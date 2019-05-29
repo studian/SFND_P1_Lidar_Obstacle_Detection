@@ -27,16 +27,20 @@ In this course we will be talking about sensor fusion, whch is the process of ta
 ### 3) Result of Data1 in the Project 1 (SFND_Lidar_Obstacle_Detection)
 
 <img src="media/result_data1.png" width="700" height="400" />
-<!--[![Results1](media/result_data1.png)](https://youtu.be/WLkwgH8ocps)
+<!--
+[![Results1](media/result_data1.png)](https://youtu.be/WLkwgH8ocps)
 
-(click on the image to open the video)-->
+(click on the image to open the video)
+-->
 
 ### 4) Result of Data2 in the Project 1 (SFND_Lidar_Obstacle_Detection)
 
 <img src="media/result_data2.png" width="700" height="400" />
-<!--[![Results2](media/result_data2.png)](https://youtu.be/lWWWKkOP0UA)
+<!--
+[![Results2](media/result_data2.png)](https://youtu.be/lWWWKkOP0UA)
 
-(click on the image to open the video)-->
+(click on the image to open the video)
+-->
 
 ## 2. Dev-Env Installation of Quiz and Project
 
