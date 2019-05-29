@@ -83,19 +83,25 @@ void cityBlock(pcl::visualization::PCLVisualizer::Ptr& viewer, ProcessPointCloud
 	// ----------------------------------------------------
 	// -----Open 3D viewer and display City Block     -----
 	// ----------------------------------------------------
+	//pcl::PointCloud<pcl::PointXYZI>::Ptr filterCloud = pointProcessor->FilterCloud(inputCloud, 0.3 , Eigen::Vector4f (-20, -6, -3, 1), Eigen::Vector4f ( 30, 7, 2, 1));
+	//std::pair<pcl::PointCloud<pcl::PointXYZI>::Ptr, pcl::PointCloud<pcl::PointXYZI>::Ptr> segmentCloud = pointProcessor->RansacPlane(filterCloud, 100, 0.2);
+	
 
-	inputCloud = pointProcessor->FilterCloud(inputCloud, 0.3, Eigen::Vector4f(-10, -5, -2, 1), Eigen::Vector4f(30, 8, 1, 1));
-
+	//inputCloud = pointProcessor->FilterCloud(inputCloud, 0.3, Eigen::Vector4f(-10, -5, -2, 1), Eigen::Vector4f(30, 8, 1, 1));
+	inputCloud = pointProcessor->FilterCloud(inputCloud, 0.3 , Eigen::Vector4f (-20, -6, -3, 1), Eigen::Vector4f ( 30, 7, 2, 1));
+	
 //	std::pair<pcl::PointCloud<pcl::PointXYZI>::Ptr, pcl::PointCloud<pcl::PointXYZI>::Ptr> segmentCloud = pointProcessor.SegmentPlane(inputCloud, 100, 0.2);
 	std::pair<pcl::PointCloud<pcl::PointXYZI>::Ptr, pcl::PointCloud<pcl::PointXYZI>::Ptr> segmentCloud = pointProcessor->RansacPlane(inputCloud, 100, 0.2);
+	
 
 	KdTree* tree = new KdTree;
 
 	for (int i = 0; i < segmentCloud.first->points.size(); i++)
 		tree->insert(segmentCloud.first->points[i], i);
 
-//	std::vector<pcl::PointCloud<pcl::PointXYZI>::Ptr> cloudClusters = pointProcessor.Clustering(segmentCloud.first, 0.53, 10, 500);
-	std::vector<pcl::PointCloud<pcl::PointXYZI>::Ptr> cloudClusters = pointProcessor->euclideanCluster(segmentCloud.first, tree, 0.5, 30, 250);
+	//std::vector<pcl::PointCloud<pcl::PointXYZI>::Ptr> cloudClusters = pointProcessor.Clustering(segmentCloud.first, 0.53, 10, 500);
+	//std::vector<pcl::PointCloud<pcl::PointXYZI>::Ptr> cloudClusters = pointProcessor->euclideanCluster(segmentCloud.first, tree, 0.5, 30, 250);
+	std::vector<pcl::PointCloud<pcl::PointXYZI>::Ptr> cloudClusters = pointProcessor->euclideanCluster(segmentCloud.first, tree, 0.35, 15, 500);
 
 	renderPointCloud(viewer, segmentCloud.second, "planeCloud", Color(0, 1, 0));
 	renderPointCloud(viewer, segmentCloud.first, "obstCloud", Color(1, 0, 0));
@@ -154,7 +160,7 @@ int main (int argc, char** argv)
     initCamera(setAngle, viewer);
 
 	ProcessPointClouds<pcl::PointXYZI>* pointProcessorI = new ProcessPointClouds<pcl::PointXYZI>();
-	std::vector<boost::filesystem::path> stream = pointProcessorI->streamPcd("../src/sensors/data/pcd/data_2");
+	std::vector<boost::filesystem::path> stream = pointProcessorI->streamPcd("../src/sensors/data/pcd/data_1");
 	auto streamIterator = stream.begin();
 	pcl::PointCloud<pcl::PointXYZI>::Ptr inputCloudI;
 
