@@ -1,4 +1,4 @@
-# Sensor Fusion Self-Driving Car Course 11
+# Sensor Fusion Self-Driving Car Course
 
 ## Welcome to the Sensor Fusion course for self-driving cars.
 
